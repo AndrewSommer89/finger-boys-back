@@ -37,8 +37,7 @@ router.get("/me", auth, async (req, res) => {
 
 router.post(
   "/",
-  [auth],
-
+  auth,
   // User is autheticated and required info is validated
   async (req, res) => {
     const errors = validationResult(req);
@@ -144,4 +143,87 @@ router.delete("/", auth, async (req, res) => {
   }
 });
 
+// @route   PUT api/profile/experience
+// @desc    Add profile experience
+// @access  Private
+router.put(
+  "/scores",
+  [
+    auth,
+    [
+      check("totalFrames", "Title is required")
+        .not()
+        .isEmpty(),
+      check("totalPins", "Company is required")
+        .not()
+        .isEmpty(),
+      check("totalSpares", "from date is required")
+        .not()
+        .isEmpty(),
+      check("totalStrikes", "from date is required")
+        .not()
+        .isEmpty(),
+      check("totalSplits", "from date is required")
+        .not()
+        .isEmpty(),
+      check("splitsConverted", "from date is required")
+        .not()
+        .isEmpty(),
+      check("gutterballs", "from date is required")
+        .not()
+        .isEmpty(),
+      check("singlePinSpareAttempts", "from date is required")
+        .not()
+        .isEmpty(),
+      check("singlePinSparesConverted", "from date is required")
+        .not()
+        .isEmpty()
+    ]
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const {
+      gameWon,
+      totalFrames,
+      totalPins,
+      totalSpares,
+      totalStrikes,
+      totalSplits,
+      splitsConverted,
+      gutterballs,
+      singlePinSpareAttempts,
+      singlePinSparesConverted
+    } = req.body;
+
+    const newScore = {
+      gameWon,
+      totalFrames,
+      totalPins,
+      totalSpares,
+      totalStrikes,
+      totalSplits,
+      splitsConverted,
+      gutterballs,
+      singlePinSpareAttempts,
+      singlePinSparesConverted
+    };
+
+    try {
+      const profile = await Profile.findOne({ user: req.user.id });
+
+      profile.scores.unshift(newScore);
+
+      await profile.save();
+
+      res.json(profile);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send("Server Error");
+    }
+  }
+);
 module.exports = router;

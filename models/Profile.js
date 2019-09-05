@@ -87,6 +87,54 @@ const ProfileSchema = new mongoose.Schema({
       }
     }
   ],
+
+  scores: [
+    {
+      date: {
+        type: Date,
+        default: Date.now
+      },
+      gameWon: {
+        type: Boolean
+      },
+      totalFrames: {
+        type: Number,
+        required: true
+      },
+      totalPins: {
+        type: Number,
+        required: true
+      },
+      totalSpares: {
+        type: Number,
+        required: true
+      },
+      totalStrikes: {
+        type: Number,
+        required: true
+      },
+      totalSplits: {
+        type: Number,
+        required: true
+      },
+      splitsConverted: {
+        type: Number,
+        required: true
+      },
+      gutterballs: {
+        type: Number,
+        required: true
+      },
+      singlePinSpareAttempts: {
+        type: Number,
+        required: true
+      },
+      singlePinSparesConverted: {
+        type: Number,
+        required: true
+      }
+    }
+  ],
   date: {
     type: Date,
     default: Date.now
