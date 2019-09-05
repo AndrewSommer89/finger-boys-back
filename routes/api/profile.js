@@ -37,14 +37,7 @@ router.get("/me", auth, async (req, res) => {
 
 router.post(
   "/",
-  [
-    auth,
-    [
-      check("leagueMember", "You must enter whether you part of league play")
-        .not()
-        .isEmpty()
-    ]
-  ],
+  [auth],
 
   // User is autheticated and required info is validated
   async (req, res) => {
@@ -131,6 +124,23 @@ router.get("/user/:user_id", async (req, res) => {
       return res.status(400).json({ msg: "Profile not found" });
     }
     res.status(500).send("Server error");
+  }
+});
+
+// @route   DELETE api/profile/user/:user_id
+// @desc    Delete profile,user and posts
+// @access  private
+router.delete("/", auth, async (req, res) => {
+  try {
+    // @todo = remove users posts
+    //Remove profile
+    await Profile.findOneAndRemove({ user: req.user.id });
+    //Remove user
+    await User.findOneAndRemove({ _id: req.user.id });
+    res.json({ msg: "User deleted" });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
   }
 });
 

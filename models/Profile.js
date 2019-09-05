@@ -7,8 +7,7 @@ const ProfileSchema = new mongoose.Schema({
   },
 
   leagueMember: {
-    type: Boolean,
-    required: true
+    type: Boolean
   },
   phone: {
     type: String
