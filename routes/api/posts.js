@@ -211,7 +211,7 @@ router.post(
   }
 );
 
-// @route   POST api/post/comment/:id
+// @route   DELETE api/post/comment/:id
 // @desc    Comment on a post
 // @access  Private
 router.delete("/comment/:id/:comment_id", auth, async (req, res) => {
