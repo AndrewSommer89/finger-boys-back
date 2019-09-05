@@ -5,15 +5,15 @@ const ProfileSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "user"
   },
+
   leagueMember: {
-    type: Boolean
+    type: Boolean,
+    required: true
   },
   phone: {
     type: String
   },
-  email: {
-    type: String
-  },
+
   stats: [
     {
       averageScore: {
@@ -87,5 +87,11 @@ const ProfileSchema = new mongoose.Schema({
         type: Number
       }
     }
-  ]
+  ],
+  date: {
+    type: Date,
+    default: Date.now
+  }
 });
+
+module.exports = Profile = mongoose.model("profile", ProfileSchema);
