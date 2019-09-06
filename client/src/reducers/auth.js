@@ -2,7 +2,9 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   USER_LOADED,
-  AUTH_ERROR
+  AUTH_ERROR,
+  LOGIN_SUCCESS,
+  LOGIN_FAIL
 } from "../actions/types";
 
 const initialState = {
@@ -16,7 +18,7 @@ export default function(state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
-    // User enters valid input and is registered
+    // User enters valid input on register form = is registered & logged in
     case REGISTER_SUCCESS:
       // Log user in with token
       localStorage.setItem("token", payload.token);
@@ -26,7 +28,7 @@ export default function(state = initialState, action) {
         isAuthenticated: true,
         loading: false
       };
-    // User does not enter valid input
+    // User does not enter valid input on register form
     case REGISTER_FAIL:
       // Remove token from user
       localStorage.removeItem("token");
@@ -46,6 +48,26 @@ export default function(state = initialState, action) {
       };
     //User does not have token
     case AUTH_ERROR:
+      return {
+        ...state,
+        token: null,
+        isAuthenticated: false,
+        loading: false
+      };
+    // User enters valid input in login form and is logged in
+    case LOGIN_SUCCESS:
+      // Log user in with token
+      localStorage.setItem("token", payload.token);
+      return {
+        ...state,
+        ...payload,
+        isAuthenticated: true,
+        loading: false
+      };
+    // User does not enter valid input in login form
+    case LOGIN_FAIL:
+      // Remove token from user
+      localStorage.removeItem("token");
       return {
         ...state,
         token: null,

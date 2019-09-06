@@ -4,7 +4,9 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   USER_LOADED,
-  AUTH_ERROR
+  AUTH_ERROR,
+  LOGIN_SUCCESS,
+  LOGIN_FAIL
 } from "./types";
 import setAuthToken from "../utils/setAuthToken";
 
@@ -50,6 +52,7 @@ export const register = ({ name, email, password }) => async dispatch => {
       type: REGISTER_SUCCESS,
       payload: res.data
     });
+    dispatch(loadUser());
   } catch (err) {
     // If user input is invalid
     // Get errors from the backend
@@ -61,6 +64,42 @@ export const register = ({ name, email, password }) => async dispatch => {
     }
     dispatch({
       type: REGISTER_FAIL
+    });
+  }
+};
+
+// Login User
+export const login = (email, password) => async dispatch => {
+  // Send data to headers
+  const config = {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  };
+
+  // Prepare data to send
+  const body = JSON.stringify({ email, password });
+  // If user input is valid
+  try {
+    const res = await axios.post("/api/auth", body, config);
+
+    dispatch({
+      type: LOGIN_SUCCESS,
+      payload: res.data
+    });
+
+    dispatch(loadUser());
+  } catch (err) {
+    // If user input is invalid
+    // Get errors from the backend
+    const errors = err.response.data.errors;
+
+    // Alert user which error it is
+    if (errors) {
+      errors.forEach(error => dispatch(setAlert(error.msg, "danger")));
+    }
+    dispatch({
+      type: LOGIN_FAIL
     });
   }
 };
