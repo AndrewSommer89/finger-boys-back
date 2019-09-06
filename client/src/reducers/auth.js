@@ -4,7 +4,8 @@ import {
   USER_LOADED,
   AUTH_ERROR,
   LOGIN_SUCCESS,
-  LOGIN_FAIL
+  LOGIN_FAIL,
+  LOGOUT
 } from "../actions/types";
 
 const initialState = {
@@ -67,6 +68,16 @@ export default function(state = initialState, action) {
     // User does not enter valid input in login form
     case LOGIN_FAIL:
       // Remove token from user
+      localStorage.removeItem("token");
+      return {
+        ...state,
+        token: null,
+        isAuthenticated: false,
+        loading: false
+      };
+    // Log the user out
+    case LOGOUT:
+      // Remove token
       localStorage.removeItem("token");
       return {
         ...state,
