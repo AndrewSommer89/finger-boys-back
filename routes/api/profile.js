@@ -22,7 +22,7 @@ router.get("/me", auth, async (req, res) => {
       return res.status(400).json({ msg: "There is no profile for this user" });
     }
 
-    // If there are not errors respond with profile
+    // If there are no errors respond with profile
     res.json(profile);
   } catch (err) {
     //If there is an error in the server
@@ -46,7 +46,15 @@ router.post(
     }
 
     //extract what you need from req.body
-    const { leagueMember, phone } = req.body;
+    const {
+      leagueMember,
+      phone,
+      homeLane,
+      instagram,
+      twitter,
+      facebook,
+      linkedin
+    } = req.body;
 
     // Build profile object
     // Set variable to empty object
@@ -55,6 +63,14 @@ router.post(
     // If field has input add to profileFields;
     if (leagueMember) profileFields.leagueMember = leagueMember;
     if (phone) profileFields.phone = phone;
+    if (homeLane) profileFields.homeLane = homeLane;
+
+    //Build social object
+    profileFields.social = {};
+    if (twitter) profileFields.social.twitter = twitter;
+    if (facebook) profileFields.social.facebook = facebook;
+    if (linkedin) profileFields.social.linkedin = linkedin;
+    if (instagram) profileFields.social.instagram = instagram;
 
     try {
       //Look for profile
@@ -151,31 +167,37 @@ router.put(
   [
     auth,
     [
-      check("totalFrames", "Title is required")
+      check("totalFrames", "Number of frames is required")
         .not()
         .isEmpty(),
-      check("totalPins", "Company is required")
+      check("totalPins", "Game score is required")
         .not()
         .isEmpty(),
-      check("totalSpares", "from date is required")
+      check("totalSpares", "Number of spare is required")
         .not()
         .isEmpty(),
-      check("totalStrikes", "from date is required")
+      check("totalStrikes", "Number of strikes is required")
         .not()
         .isEmpty(),
-      check("totalSplits", "from date is required")
+      check("totalSplits", "Number of splits is required")
         .not()
         .isEmpty(),
-      check("splitsConverted", "from date is required")
+      check("splitsConverted", "Number of splits converted is required")
         .not()
         .isEmpty(),
-      check("gutterballs", "from date is required")
+      check("gutterballs", "Number of gutterballs is required")
         .not()
         .isEmpty(),
-      check("singlePinSpareAttempts", "from date is required")
+      check(
+        "singlePinSpareAttempts",
+        "Number of single-pin spare attempts is required"
+      )
         .not()
         .isEmpty(),
-      check("singlePinSparesConverted", "from date is required")
+      check(
+        "singlePinSparesConverted",
+        "Number of single-pin pickups is required"
+      )
         .not()
         .isEmpty()
     ]

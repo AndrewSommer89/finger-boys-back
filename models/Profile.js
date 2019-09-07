@@ -12,6 +12,9 @@ const ProfileSchema = new mongoose.Schema({
   phone: {
     type: String
   },
+  homeLane: {
+    type: String
+  },
 
   stats: [
     {
@@ -87,7 +90,20 @@ const ProfileSchema = new mongoose.Schema({
       }
     }
   ],
-
+  social: {
+    instagram: {
+      type: String
+    },
+    twitter: {
+      type: String
+    },
+    facebook: {
+      type: String
+    },
+    linkedin: {
+      type: String
+    }
+  },
   scores: [
     {
       date: {
