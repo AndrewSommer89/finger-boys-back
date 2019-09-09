@@ -9,6 +9,7 @@ import Alert from "./components/layout/Alert";
 import Dashboard from "./components/dashboard/Dashboard";
 import CreateProfile from "./components/profile-form/CreateProfile";
 import EditProfile from "./components/profile-form/EditProfile";
+import AddScore from "./components/profile-form/AddScore";
 
 import PrivateRoute from "./components/routing/PrivateRoute";
 
@@ -57,6 +58,7 @@ const App = () => {
                 path="/edit-profile"
                 component={EditProfile}
               />
+              <PrivateRoute exact path="/add-score" component={AddScore} />
             </Switch>
           </section>
         </Fragment>

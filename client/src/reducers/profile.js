@@ -1,4 +1,9 @@
-import { GET_PROFILE, PROFILE_ERROR, CLEAR_PROFILE } from "../actions/types";
+import {
+  GET_PROFILE,
+  PROFILE_ERROR,
+  CLEAR_PROFILE,
+  UPDATE_PROFILE
+} from "../actions/types";
 
 const intitialState = {
   //  users profiles and other users profile
@@ -17,6 +22,7 @@ export default function(state = intitialState, action) {
   // User is authenticated give profile back their own profile
   switch (type) {
     case GET_PROFILE:
+    case UPDATE_PROFILE:
       return {
         ...state,
         profile: payload,
