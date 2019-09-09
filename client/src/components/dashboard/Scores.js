@@ -2,8 +2,9 @@ import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Moment from "react-moment";
+import { deleteScore } from "../../actions/profile";
 
-const Scores = ({ scores }) => {
+const Scores = ({ scores, deleteScore }) => {
   const scoreDisplay = scores.map(score => (
     <tr key={score._id}>
       <td>
@@ -20,7 +21,12 @@ const Scores = ({ scores }) => {
       <td className="hide-sm">{score.singlePinSpareAttempts}</td>
       <td className="hide-sm">{score.gutterballs}</td>
       <td>
-        <button className="btn btn-danger">Delete</button>
+        <button
+          onClick={() => deleteScore(score._id)}
+          className="btn btn-danger"
+        >
+          Delete
+        </button>
       </td>
     </tr>
   ));
@@ -59,4 +65,7 @@ Scores.propTypes = {
   Scores: PropTypes.array.isRequired
 };
 
-export default Scores;
+export default connect(
+  null,
+  { deleteScore }
+)(Scores);
