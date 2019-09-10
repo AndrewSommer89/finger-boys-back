@@ -13,8 +13,8 @@ const Scores = ({ scores, deleteScore }) => {
       <td className="hide-sm">{score.gameWon === true ? "Won" : "Loss"}</td>
       <td className="hide-sm">{score.totalFrames}</td>
       <td>{score.totalPins}</td>
-      <td>{score.totalSpares}</td>
-      <td>{score.totalStrikes} </td>
+      <td>{score.totalStrikes}</td>
+      <td>{score.totalSpares} </td>
       <td className="hide-sm">{score.totalSplits}</td>
       <td className="hide-sm">{score.splitsConverted}</td>
       <td className="hide-sm">{score.singlePinSparesConverted}</td>
@@ -46,8 +46,8 @@ const Scores = ({ scores, deleteScore }) => {
             <th className="hide-sm">Won?</th>
             <th className="hide-sm">Frames</th>
             <th>Score</th>
-            <th>Spares</th>
             <th>Strikes</th>
+            <th>Spares</th>
             <th className="hide-sm">TS</th>
             <th className="hide-sm">SC</th>
             <th className="hide-sm">SPS</th>
@@ -62,7 +62,7 @@ const Scores = ({ scores, deleteScore }) => {
 };
 
 Scores.propTypes = {
-  Scores: PropTypes.array.isRequired
+  scores: PropTypes.array.isRequired
 };
 
 export default connect(

@@ -16,7 +16,7 @@ const ProfileItem = ({
         <h2>{name}</h2>
         <p>{leagueMember ? "League Member" : "Club Member"}</p>
         <p>{homeLane}</p>
-        <Link to={`/profile/${_id}`} className="btn btn-primary">
+        <Link to={`/profile/user/${_id}`} className="btn btn-primary">
           View Profile
         </Link>
       </div>

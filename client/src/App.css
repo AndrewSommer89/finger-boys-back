@@ -453,6 +453,11 @@ button {
   flex-basis: 20%;
 }
 
+/* Stats */
+.statsTable {
+  margin: 0 auto;
+}
+
 /* Posts Page */
 .post-form .post-form-header {
   background: var(--primary-color);

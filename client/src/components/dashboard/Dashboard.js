@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Spinner from "../layout/Spinner";
 import DashboardActions from "./DashboardActions";
+import Stats from "./Stats";
 import Scores from "./Scores";
 import { getCurrentProfile, deleteAccount } from "../../actions/profile";
 
@@ -30,6 +31,7 @@ const Dashboard = ({
       {profile !== null ? (
         <Fragment>
           <DashboardActions />
+          <Stats scores={profile.scores} />
           <Scores scores={profile.scores} />
           <div className="my-2">
             <button className="btn btn-dange" onClick={() => deleteAccount()}>
