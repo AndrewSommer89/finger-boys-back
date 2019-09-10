@@ -14,6 +14,7 @@ const EditProfile = ({
     leagueMember: false,
     phone: "",
     homeLane: "",
+    bio: "",
     twitter: "",
     facebook: "",
     linkedin: "",
@@ -43,6 +44,7 @@ const EditProfile = ({
     leagueMember,
     phone,
     homeLane,
+    bio,
     twitter,
     facebook,
     linkedin,
@@ -59,7 +61,7 @@ const EditProfile = ({
 
   return (
     <Fragment>
-      <h1 className="large text-primary">Create Your Profile</h1>
+      <h1 className="large text-primary">Update Your Profile</h1>
       <p className="lead">
         <i className="fas fa-user"></i> Let's get some information from you
       </p>
@@ -99,6 +101,15 @@ const EditProfile = ({
             onChange={e => onChange(e)}
           />
           <small className="form-text">Where do you normally bowl?</small>
+        </div>
+        <div className="form-group">
+          <textarea
+            placeholder="A short bio of yourself"
+            name="bio"
+            value={bio}
+            onChange={e => onChange(e)}
+          ></textarea>
+          <small className="form-text">Tell us a little about yourself</small>
         </div>
 
         <div className="my-2">

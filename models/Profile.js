@@ -15,6 +15,9 @@ const ProfileSchema = new mongoose.Schema({
   homeLane: {
     type: String
   },
+  bio: {
+    type: String
+  },
 
   stats: [
     {

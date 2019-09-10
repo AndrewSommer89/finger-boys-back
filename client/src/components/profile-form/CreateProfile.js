@@ -9,6 +9,7 @@ const CreateProfile = ({ createProfile, history }) => {
     leagueMember: false,
     phone: "",
     homeLane: "",
+    bio: "",
     twitter: "",
     facebook: "",
     linkedin: "",
@@ -21,6 +22,7 @@ const CreateProfile = ({ createProfile, history }) => {
   const {
     leagueMember,
     phone,
+    bio,
     homeLane,
     twitter,
     facebook,
@@ -78,6 +80,15 @@ const CreateProfile = ({ createProfile, history }) => {
             onChange={e => onChange(e)}
           />
           <small className="form-text">Where do you normally bowl?</small>
+        </div>
+        <div className="form-group">
+          <textarea
+            placeholder="A short bio of yourself"
+            name="bio"
+            value={bio}
+            onChange={e => onChange(e)}
+          ></textarea>
+          <small className="form-text">Tell us a little about yourself</small>
         </div>
 
         <div className="my-2">

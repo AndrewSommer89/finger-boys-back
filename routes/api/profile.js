@@ -51,6 +51,7 @@ router.post(
       leagueMember,
       phone,
       homeLane,
+      bio,
       instagram,
       twitter,
       facebook,
@@ -65,6 +66,7 @@ router.post(
     if (leagueMember) profileFields.leagueMember = leagueMember;
     if (phone) profileFields.phone = phone;
     if (homeLane) profileFields.homeLane = homeLane;
+    if (bio) profileFields.bio = bio;
 
     //Build social object
     profileFields.social = {};
