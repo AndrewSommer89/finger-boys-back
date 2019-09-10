@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import { Link, withRouther } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { addScore } from "../../actions/profile";
@@ -163,4 +163,4 @@ AddScore.propTypes = {
 export default connect(
   null,
   { addScore }
-)(AddScore);
+)(withRouter(AddScore));

@@ -2,6 +2,7 @@ import axios from "axios";
 import { setAlert } from "./alert";
 import {
   GET_PROFILE,
+  GET_PROFILES,
   PROFILE_ERROR,
   UPDATE_PROFILE,
   CLEAR_PROFILE,
@@ -15,6 +16,51 @@ export const getCurrentProfile = () => async dispatch => {
     // Make request to backend
     // Will get the current users profile
     const res = await axios.get("/api/profile/me");
+
+    // Dispatch redux action
+    dispatch({
+      type: GET_PROFILE,
+      payload: res.data
+    });
+  } catch (err) {
+    // If there is an error
+    // Dispatch redux action
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
+
+// Get all profiles
+export const getProfiles = () => async dispatch => {
+  dispatch({ type: CLEAR_PROFILE });
+  try {
+    // Make request to backend
+    // Will get the current users profile
+    const res = await axios.get("/api/profile");
+
+    // Dispatch redux action
+    dispatch({
+      type: GET_PROFILES,
+      payload: res.data
+    });
+  } catch (err) {
+    // If there is an error
+    // Dispatch redux action
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
+
+// Get profile by id
+export const getProfileById = userId => async dispatch => {
+  try {
+    // Make request to backend
+    // Will get the current users profile
+    const res = await axios.get(`/api/profile/user/${userId}`);
 
     // Dispatch redux action
     dispatch({
@@ -142,7 +188,7 @@ export const deleteScore = id => async dispatch => {
 export const deleteAccount = () => async dispatch => {
   if (window.confirm("Are you sure? This can NOT be undone!")) {
     try {
-      const res = await axios.delete(`/api/profile`);
+      await axios.delete(`/api/profile`);
 
       dispatch({ type: CLEAR_PROFILE });
       dispatch({ type: ACCOUNT_DELETED });

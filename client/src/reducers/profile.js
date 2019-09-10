@@ -1,5 +1,6 @@
 import {
   GET_PROFILE,
+  GET_PROFILES,
   PROFILE_ERROR,
   CLEAR_PROFILE,
   UPDATE_PROFILE
@@ -27,6 +28,13 @@ export default function(state = intitialState, action) {
         ...state,
         profile: payload,
         load: false
+      };
+
+    case GET_PROFILES:
+      return {
+        ...state,
+        profiles: payload,
+        loading: false
       };
 
     //There was an error when loading user's profile

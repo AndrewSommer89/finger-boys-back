@@ -37,7 +37,7 @@ const EditProfile = ({
         loading || !profile.social.linkedin ? "" : profile.social.linkedin,
       instagram: loading || !profile.social ? "" : profile.social.instagram
     });
-  }, [loading]);
+  }, [loading, getCurrentProfile]);
 
   const {
     leagueMember,

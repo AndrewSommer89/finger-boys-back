@@ -17,7 +17,7 @@ const Dashboard = ({
   useEffect(() => {
     getCurrentProfile();
     // add "[]" to make function load only once
-  }, []);
+  }, [getCurrentProfile]);
   // If profile is null and page is loading show spinner else show Fragment
   return loading && profile === null ? (
     <Spinner />
