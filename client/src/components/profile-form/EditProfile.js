@@ -87,7 +87,7 @@ const EditProfile = ({
             onChange={e => onChange(e)}
           />
           <small className="form-text">
-            Mobile Phone (only other club members can see your numbe)
+            So other club members can reach out
           </small>
         </div>
         <div className="form-group">

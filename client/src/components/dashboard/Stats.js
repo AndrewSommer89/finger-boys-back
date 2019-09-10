@@ -11,7 +11,7 @@ const Stats = ({ scores }) => {
       let gameScore = scores[i].totalPins;
       scoreTotal = scoreTotal + gameScore;
     }
-    return scoreTotal / gamesBowled;
+    return (scoreTotal / gamesBowled).toFixed(2);
   };
 
   const highScore = () => {
