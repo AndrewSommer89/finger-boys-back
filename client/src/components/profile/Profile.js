@@ -4,6 +4,9 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Spinner from "../layout/Spinner";
 import ProfileTop from "./ProfileTop";
+import ProfileAbout from "./ProfileAbout";
+import ProfileStats from "./ProfileStats";
+import ProfileScores from "./ProfileScores";
 import { getProfileById } from "../../actions/profile";
 
 const Profile = ({
@@ -28,12 +31,15 @@ const Profile = ({
           {auth.isAuthenticated &&
             auth.loading === false &&
             auth.user._id === profile.user._id && (
-              <Link to="edit-profile" className="btn btn-dark">
-                Edit Profile
+              <Link to="/edit-profile" className="btn btn-light">
+                <i className="fas fa-user-circle text-primary"></i> Edit Profile
               </Link>
             )}
-          <div className="profile-grid my-1">
+          <div>
             <ProfileTop profile={profile} />
+            <ProfileAbout profile={profile} />
+            <ProfileStats scores={profile.scores} />
+            <ProfileScores scores={profile.scores} />
           </div>
         </Fragment>
       )}

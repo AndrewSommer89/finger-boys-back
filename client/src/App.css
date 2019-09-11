@@ -453,9 +453,56 @@ button {
   flex-basis: 20%;
 }
 
+h3 {
+  padding: 30px;
+  text-align: center;
+}
+/* Profile Scores */
+
+.profile-scores {
+  border: 1px solid #999;
+  padding: 20px;
+  width: 95%;
+  margin: auto;
+}
+.profile-scores tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.profile-scores tr:hover {
+  background-color: lightgray;
+}
+
+.profile-scores th,
+.profile-scores td {
+  text-align: left;
+  border-bottom: 1px solid black;
+}
+
 /* Stats */
-.statsTable {
-  margin: 0 auto;
+.profile-stats {
+  border: 1px solid #999;
+  padding: 20px;
+  width: 90%;
+  margin: auto;
+}
+.profile-stats tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.profile-stats tr:hover {
+  background-color: lightgray;
+}
+
+.profile-stats th,
+.profile-stats td {
+  padding: 5px;
+  text-align: center;
+  border-right: 1px solid black;
+}
+
+.profile-stats th {
+  border-bottom: 1px solid black;
 }
 
 /* Posts Page */
