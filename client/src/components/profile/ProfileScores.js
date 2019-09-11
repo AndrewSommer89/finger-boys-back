@@ -10,7 +10,7 @@ const ProfileScores = ({ scores, deleteScore }) => {
       <td>
         <Moment format="YYYY/MM/DD">{score.date}</Moment>
       </td>
-      <td className="hide-sm">{score.gameWon === true ? "Won" : "Loss"}</td>
+      <td className="hide-sm">{score.gameWon === true ? "Win" : "Loss"}</td>
       <td className="hide-sm">{score.totalFrames}</td>
       <td>{score.totalPins}</td>
       <td>{score.totalStrikes}</td>
