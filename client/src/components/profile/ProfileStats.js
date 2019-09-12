@@ -223,6 +223,8 @@ const ProfileStats = ({ scores }) => {
               <th>Strike %</th>
               <th>Spares</th>
               <th>Spares %</th>
+              <th>Splits Converted</th>
+              <th>Split %</th>
               <th>Open Frame %</th>
               <th>Single Pin Pickups</th>
               <th>Gutterballs</th>
@@ -239,6 +241,7 @@ const ProfileStats = ({ scores }) => {
               <td>{strikePercentage()}</td>
               <td>{totalSpares()}</td>
               <td>{sparePercentage()}</td>
+              <td>{splitPercentage()}</td>
               <td>{openFramePercentage()}</td>
               <td>{singlePinPickupPercentage()}</td>
               <td>{gutterballs()}</td>
