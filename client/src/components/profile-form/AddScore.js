@@ -1,11 +1,20 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { addScore } from "../../actions/profile";
+import { addScore, getProfiles } from "../../actions/profile";
 
-const AddScore = ({ addScore, history }) => {
+const AddScore = ({
+  addScore,
+  getProfiles,
+  profile: { profiles, auth },
+  history
+}) => {
+  useEffect(() => {
+    getProfiles();
+  }, [getProfiles]);
   const [formData, setFormData] = useState({
+    bowler: "",
     date: "",
     gameWon: false,
     totalFrames: 0,
@@ -20,6 +29,7 @@ const AddScore = ({ addScore, history }) => {
   });
 
   const {
+    bowler,
     date,
     gameWon,
     totalFrames,
@@ -47,6 +57,19 @@ const AddScore = ({ addScore, history }) => {
             addScore(formData, history);
           }}
         >
+          <div className="form-group">
+            <select name="bowler" value={bowler} onChange={e => onChange(e)}>
+              <option value={null}>Pick a bowler</option>
+              {profiles.length > 0 ? (
+                profiles.map(profile => (
+                  <option value={profile.user._id}>{profile.user.name}</option>
+                ))
+              ) : (
+                <option>No profiles found...</option>
+              )}
+            </select>
+            <small className="form-text">Who was bowling?</small>
+          </div>
           <div className="form-group">
             <input
               type="date"
@@ -157,10 +180,15 @@ const AddScore = ({ addScore, history }) => {
 };
 
 AddScore.propTypes = {
-  addScore: PropTypes.func.isRequired
+  addScore: PropTypes.func.isRequired,
+  profile: PropTypes.object.isRequired
 };
 
+const mapStateToProps = state => ({
+  profile: state.profile
+});
+
 export default connect(
-  null,
-  { addScore }
+  mapStateToProps,
+  { addScore, getProfiles }
 )(withRouter(AddScore));

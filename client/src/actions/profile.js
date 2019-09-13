@@ -166,9 +166,11 @@ export const addScore = (formData, history) => async dispatch => {
 };
 
 // Delete Score
-export const deleteScore = id => async dispatch => {
+export const deleteScore = (profileId, scoreId) => async dispatch => {
   try {
-    const res = await axios.delete(`/api/profile/score/${id}`);
+    const res = await axios.delete(
+      `/api/profile/score/${profileId}/${scoreId}`
+    );
 
     dispatch({
       type: UPDATE_PROFILE,

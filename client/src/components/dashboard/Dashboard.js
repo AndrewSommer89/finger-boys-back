@@ -30,7 +30,7 @@ const Dashboard = ({
       </p>
       {profile !== null ? (
         <Fragment>
-          <DashboardActions />
+          <DashboardActions user={user} />
           <Stats scores={profile.scores} />
           <Scores scores={profile.scores} />
           <div className="my-2">
@@ -41,7 +41,7 @@ const Dashboard = ({
         </Fragment>
       ) : (
         <Fragment>
-          <p>You have not yet set up a profil, please add some info</p>
+          <p>You have not yet set up a profile, please add some info</p>
           <Link to="/create-profile" className="btn btn-primary my-1">
             Create Profile
           </Link>
