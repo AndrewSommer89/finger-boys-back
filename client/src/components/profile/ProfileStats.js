@@ -187,7 +187,7 @@ const ProfileStats = ({ scores }) => {
       <Fragment>
         <h2 className="text-primary">Stats</h2>
         <h3 className="text-primary">Game Scores</h3>
-        <table className="profile-stats">
+        <table className="profile-stats profile-stats-scores">
           <thead>
             <tr>
               <th>Under 100</th>
@@ -212,40 +212,41 @@ const ProfileStats = ({ scores }) => {
           </tbody>
         </table>
         <h3 className="text-primary">Game Stats</h3>
-        <table className="profile-stats">
+        <table className="profile-stats profile-stats-stats">
           <thead>
             <tr>
               <th>Average Score</th>
               <th>High Score</th>
-              <th>Games Bowled</th>
-              <th>Frames Bowled</th>
-              <th>Strikes</th>
+              <th className="hide-sm">Games Bowled</th>
+              <th className="hide-sm">Frames Bowled</th>
+              <th className="hide-sm">Strikes</th>
               <th>Strike %</th>
-              <th>Spares</th>
-              <th>Spares %</th>
-              <th>Splits Converted</th>
-              <th>Split %</th>
-              <th>Open Frame %</th>
-              <th>Single Pin Pickups</th>
-              <th>Gutterballs</th>
-              <th>Gutterball %</th>
+              <th className="hide-sm">Spares</th>
+              <th>Spare %</th>
+              <th className="hide-sm">Splits Converted</th>
+              <th className="hide-sm">Split %</th>
+              <th className="hide-sm">Open Frame %</th>
+              <th className="hide-sm">Single Pin Pickups</th>
+              <th className="hide-sm">Gutterballs</th>
+              <th className="hide-sm">Gutterball %</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>{averageScore()}</td>
               <td>{highScore()}</td>
-              <td>{gamesBowled}</td>
-              <td>{framesBowled()}</td>
-              <td>{totalStrikes()}</td>
+              <td className="hide-sm">{gamesBowled}</td>
+              <td className="hide-sm">{framesBowled()}</td>
+              <td className="hide-sm">{totalStrikes()}</td>
               <td>{strikePercentage()}</td>
-              <td>{totalSpares()}</td>
+              <td className="hide-sm">{totalSpares()}</td>
               <td>{sparePercentage()}</td>
-              <td>{splitPercentage()}</td>
-              <td>{openFramePercentage()}</td>
-              <td>{singlePinPickupPercentage()}</td>
-              <td>{gutterballs()}</td>
-              <td>{gutterballPercentage()}</td>
+              <td className="hide-sm">{splitsConverted()}</td>
+              <td className="hide-sm">{splitPercentage()}</td>
+              <td className="hide-sm">{openFramePercentage()}</td>
+              <td className="hide-sm">{singlePinPickupPercentage()}</td>
+              <td className="hide-sm">{gutterballs()}</td>
+              <td className="hide-sm">{gutterballPercentage()}</td>
             </tr>
           </tbody>
         </table>
