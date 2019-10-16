@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const ProfileTop = ({
+  // Take out the needed information from profile
   profile: {
     leagueMember,
     homeLane,
@@ -16,22 +17,30 @@ const ProfileTop = ({
       <p>{leagueMember ? "League Member" : "Club Member"}</p>
       <p>{homeLane && <span>{homeLane}</span>} </p>
       <div className="icons my-1">
-        {social && social.twitter && (
+        {// Check to see if their is a social object and inside it there is a social.twitter object
+        // If there is a social.twitter display it
+        social && social.twitter && (
           <a href={social.twitter} target="_blank" rel="noopener noreferrer">
             <i className="fab fa-twitter fa-2x"></i>
           </a>
         )}
-        {social && social.facebook && (
+        {// Check to see if their is a social object and inside it there is a social.facebook object
+        // If there is a social.facebook display it
+        social && social.facebook && (
           <a href={social.facebook} target="_blank" rel="noopener noreferrer">
             <i className="fab fa-facebook fa-2x"></i>
           </a>
         )}
-        {social && social.linkedin && (
+        {// Check to see if their is a social object and inside it there is a social.linkedin object
+        // If there is a social.linked display it
+        social && social.linkedin && (
           <a href={social.linkedin} target="_blank" rel="noopener noreferrer">
             <i className="fab fa-linkedin fa-2x"></i>
           </a>
         )}
-        {social && social.instagram && (
+        {// Check to see if their is a social object and inside it there is a social.instagram object
+        // If there is a social.instagram display it
+        social && social.instagram && (
           <a href={social.instagram} target="_blank" rel="noopener noreferrer">
             <i className="fab fa-instagram fa-2x"></i>
           </a>

@@ -5,6 +5,7 @@ import Moment from "react-moment";
 import { deleteScore } from "../../actions/profile";
 
 const ProfileScores = ({ scores, deleteScore }) => {
+  // map over scores and display them in table
   const scoreDisplay = scores.map(score => (
     <tr key={score._id}>
       <td>

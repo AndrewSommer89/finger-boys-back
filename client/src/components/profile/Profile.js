@@ -10,15 +10,19 @@ import ProfileScores from "./ProfileScores";
 import { getProfileById } from "../../actions/profile";
 
 const Profile = ({
+  // Props
   getProfileById,
   profile: { profile, loading },
   auth,
   match
 }) => {
   useEffect(() => {
+    // Call get getPost() as soon component loads
     getProfileById(match.params.id);
+    // add "[]" to make function load only once
   }, [getProfileById, match.params.id]);
 
+  // If the profile is still loading show spinner, else show fragment with content inside
   return (
     <Fragment>
       {profile === null || loading ? (
@@ -28,7 +32,11 @@ const Profile = ({
           <Link to="/profiles" className="btn btn-light">
             Back To Profiles{" "}
           </Link>
-          {auth.isAuthenticated &&
+          {// If user is logged in
+          // and user is loaded
+          // and the logged in user is on thier own profile
+          // Add link to edit profile
+          auth.isAuthenticated &&
             auth.loading === false &&
             auth.user._id === profile.user._id && (
               <Link to="/edit-profile" className="btn btn-light">

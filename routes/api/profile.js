@@ -171,33 +171,42 @@ router.put(
   [
     auth,
     [
+      // Check to see if user entered totalFrames
       check("totalFrames", "Number of frames is required")
         .not()
         .isEmpty(),
+      // Check to see if user entered totalPins
       check("totalPins", "Game score is required")
         .not()
         .isEmpty(),
+      // Check to see if user entered totalSpares
       check("totalSpares", "Number of spare is required")
         .not()
         .isEmpty(),
+      // Check to see if user entered totalStrikes
       check("totalStrikes", "Number of strikes is required")
         .not()
         .isEmpty(),
+      // Check to see if user entered splits
       check("totalSplits", "Number of splits is required")
         .not()
         .isEmpty(),
+      // Check to see if user entered splitsConverted
       check("splitsConverted", "Number of splits converted is required")
         .not()
         .isEmpty(),
+      // Check to see if user entered gutterballs
       check("gutterballs", "Number of gutterballs is required")
         .not()
         .isEmpty(),
+      // Check to see if user entered singlePinSpareAttempts
       check(
         "singlePinSpareAttempts",
         "Number of single-pin spare attempts is required"
       )
         .not()
         .isEmpty(),
+      // Check to see if user entered singlePineSparesConverted
       check(
         "singlePinSparesConverted",
         "Number of single-pin pickups is required"
@@ -212,6 +221,7 @@ router.put(
       return res.status(400).json({ errors: errors.array() });
     }
 
+    // Extract needed info from json body
     const {
       gameWon,
       totalFrames,
@@ -225,6 +235,7 @@ router.put(
       singlePinSparesConverted
     } = req.body;
 
+    // Create a newScore with info extracted from json body
     const newScore = {
       gameWon,
       totalFrames,
@@ -239,14 +250,19 @@ router.put(
     };
 
     try {
+      // Find user's profile using the users id
       const profile = await Profile.findOne({ user: req.user.id });
 
+      // Add newScore to the beginning of the scores array
       profile.scores.unshift(newScore);
 
+      // Save the score to the profile
       await profile.save();
 
+      //
       res.json(profile);
     } catch (err) {
+      //If there is an error log it in the console
       console.error(err.message);
       res.status(500).send("Server Error");
     }
@@ -258,6 +274,7 @@ router.put(
 // @access  Private
 router.delete("/score/:score_id", auth, async (req, res) => {
   try {
+    // Find the users profile using the user's id
     const profile = await Profile.findOne({ user: req.user.id });
 
     // Get remove index
@@ -265,12 +282,15 @@ router.delete("/score/:score_id", auth, async (req, res) => {
       .map(item => item.id)
       .indexOf(req.params.score_id);
 
+    // Remove user's profile
     profile.scores.splice(removeIndex, 1);
 
+    // Save the new data without the user's delted profile
     await profile.save();
 
     res.json(profile);
   } catch (err) {
+    // If there is an error log it in the console
     console.error(err.message);
     res.status(500).send("Server Error");
   }

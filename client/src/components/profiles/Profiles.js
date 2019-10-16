@@ -6,6 +6,9 @@ import ProfileItem from "./ProfileItem";
 import { getProfiles } from "../../actions/profile";
 
 const Profile = ({ getProfiles, profile: { profiles, loading } }) => {
+  // set the state for the component
+  // formData = object with all the field values
+  // setFormData = function to update the state
   useEffect(() => {
     getProfiles();
   }, [getProfiles]);

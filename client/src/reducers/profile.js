@@ -11,8 +11,6 @@ const intitialState = {
   profile: null,
   // profile listing page
   profiles: [],
-  // github repos **(not used)**
-  repos: [],
   loading: true,
   error: {}
 };

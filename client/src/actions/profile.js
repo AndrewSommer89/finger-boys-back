@@ -168,13 +168,16 @@ export const addScore = (formData, history) => async dispatch => {
 // Delete Score
 export const deleteScore = id => async dispatch => {
   try {
+    // Make a delete request to "/api/profile/score/${id}" to the backend
     const res = await axios.delete(`/api/profile/score/${id}`);
 
+    // Dispatch redux action
     dispatch({
       type: UPDATE_PROFILE,
       payload: res.data
     });
 
+    // Make alert show on page that reads "Score Removed" with "success" style
     dispatch(setAlert("Score Removed", "success"));
   } catch (err) {
     dispatch({
@@ -188,11 +191,14 @@ export const deleteScore = id => async dispatch => {
 export const deleteAccount = () => async dispatch => {
   if (window.confirm("Are you sure? This can NOT be undone!")) {
     try {
+      // Make delete request to "api/profile" on the backend
       await axios.delete(`/api/profile`);
 
+      // Dispatch redux actions
       dispatch({ type: CLEAR_PROFILE });
       dispatch({ type: ACCOUNT_DELETED });
 
+      // Make alert message show up on page
       dispatch(setAlert("Your account has been permantly deleted"));
     } catch (err) {
       dispatch({

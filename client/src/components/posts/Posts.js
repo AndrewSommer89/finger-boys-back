@@ -8,8 +8,11 @@ import { getPosts } from "../../actions/post";
 
 const Posts = ({ getPosts, post: { posts, loading } }) => {
   useEffect(() => {
+    // Call get getPosts() as soon component loads
     getPosts();
+    // add "[]" to make function load only once
   }, [getPosts]);
+  // If page loading return spinner else return the fragment with the content in it
   return loading ? (
     <Spinner />
   ) : (
@@ -21,7 +24,12 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
       <PostForm />
       <div className="posts">
         {posts.map(post => (
-          <PostItem key={post._id} post={post} />
+          <PostItem
+            // Pass in the post._id as the key
+            key={post._id}
+            // Pass in the post as the post
+            post={post}
+          />
         ))}
       </div>
     </Fragment>

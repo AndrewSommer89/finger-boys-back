@@ -5,7 +5,11 @@ import { connect } from "react-redux";
 import { createProfile } from "../../actions/profile";
 
 const CreateProfile = ({ createProfile, history }) => {
+  // set the state for the component
+  // formData = object with all the field values
+  // setFormData = function to update the state
   const [formData, setFormData] = useState({
+    // Default values
     leagueMember: false,
     phone: "",
     homeLane: "",
@@ -19,6 +23,7 @@ const CreateProfile = ({ createProfile, history }) => {
   //hide social inputs by default
   const [displaySocialInputs, toggleSocialInputs] = useState(false);
 
+  // Destructure
   const {
     leagueMember,
     phone,
@@ -30,11 +35,17 @@ const CreateProfile = ({ createProfile, history }) => {
     instagram
   } = formData;
 
+  // When user types in the input box it updates the state
   const onChange = e =>
+    // Copy the form data
+    // Make the target the current input the user is in
+    // Change the target to value that is typed in
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = e => {
+    // stop the page from refreshing when form is submitted
     e.preventDefault();
+    // pass in formData and history to createProfile action to create a profile
     createProfile(formData, history);
   };
 

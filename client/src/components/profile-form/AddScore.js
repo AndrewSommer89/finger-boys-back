@@ -5,7 +5,11 @@ import { connect } from "react-redux";
 import { addScore } from "../../actions/profile";
 
 const AddScore = ({ addScore, history }) => {
+  // set the state for the component
+  // formData = object with all the field values
+  // setFormData = function to update the state
   const [formData, setFormData] = useState({
+    // Default values
     date: "",
     gameWon: false,
     totalFrames: 0,
@@ -19,6 +23,7 @@ const AddScore = ({ addScore, history }) => {
     singlePinSparesConverted: 0
   });
 
+  // Destructure
   const {
     date,
     gameWon,
@@ -33,7 +38,11 @@ const AddScore = ({ addScore, history }) => {
     singlePinSparesConverted
   } = formData;
 
+  // When user types in the input box it updates the state
   const onChange = e =>
+    // Copy the form data
+    // Make the target the current input the user is in
+    // Change the target to value that is typed in
     setFormData({ ...formData, [e.target.name]: e.target.value });
   return (
     <Fragment>
@@ -43,7 +52,9 @@ const AddScore = ({ addScore, history }) => {
         <form
           className="form"
           onSubmit={e => {
+            // Stop the page from refeshing when submitting form
             e.preventDefault();
+            // Pass the formData and history to addScore action to add score to database
             addScore(formData, history);
           }}
         >

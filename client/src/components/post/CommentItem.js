@@ -6,6 +6,7 @@ import Moment from "react-moment";
 import { deleteComment } from "../../actions/post";
 
 const CommentItem = ({
+  // Props
   postId,
   comment: { _id, text, name, avatar, user, date },
   auth,

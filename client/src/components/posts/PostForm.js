@@ -14,8 +14,11 @@ const PostForm = ({ addPost }) => {
       <form
         class="form my-1"
         onSubmit={e => {
+          // Prevent the page from refreshing
           e.preventDefault();
+          // Pass the text in to the addPost action
           addPost({ text });
+          // Set the input box to empty
           setText("");
         }}
       >

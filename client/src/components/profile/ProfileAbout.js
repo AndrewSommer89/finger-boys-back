@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 
 const ProfileAbout = ({
+  // Pull out bio and user name from profile
   profile: {
     bio,
     user: { name }

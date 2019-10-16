@@ -10,9 +10,12 @@ import { getPost } from "../../actions/post";
 
 const Post = ({ getPost, post: { post, loading }, match }) => {
   useEffect(() => {
+    // Call get getPost() as soon component loads
     getPost(match.params.id);
+    // add "[]" to make function load only once
   }, [getPost]);
 
+  // If profile is null and page is loading show spinner else show Fragment
   return loading || post === null ? (
     <Spinner />
   ) : (
@@ -31,11 +34,13 @@ const Post = ({ getPost, post: { post, loading }, match }) => {
   );
 };
 
+// Makes sure the props are a certain type of variable
 Post.propTypes = {
   getPost: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired
 };
 
+// Get the post state using mapStateToProps
 const mapStateToProps = state => ({
   post: state.post
 });

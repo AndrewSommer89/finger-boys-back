@@ -41,6 +41,8 @@ const App = () => {
   }, []);
 
   return (
+    // User Provider to connect React and Redux and pass "store" to it
+    // PrivateRoute = user must be authenticated
     <Provider store={store}>
       <Router>
         <Fragment>

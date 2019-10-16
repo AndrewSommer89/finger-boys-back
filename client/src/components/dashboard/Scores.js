@@ -5,6 +5,7 @@ import Moment from "react-moment";
 import { deleteScore } from "../../actions/profile";
 
 const Scores = ({ scores, deleteScore }) => {
+  // create array of scores that displays scores from the database
   const scoreDisplay = scores.map(score => (
     <tr key={score._id}>
       <td>
@@ -22,7 +23,10 @@ const Scores = ({ scores, deleteScore }) => {
       <td className="hide-sm">{score.gutterballs}</td>
       <td>
         <button
-          onClick={() => deleteScore(score._id)}
+          onClick={
+            // Delete clicked on score by passing the score._id into deleteScore function
+            () => deleteScore(score._id)
+          }
           className="btn btn-danger"
         >
           Delete
@@ -31,6 +35,7 @@ const Scores = ({ scores, deleteScore }) => {
     </tr>
   ));
   return (
+    // Create table that shows scores
     <Fragment>
       <h2 className="my-2">Scores</h2>
       <p>

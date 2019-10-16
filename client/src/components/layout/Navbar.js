@@ -5,22 +5,40 @@ import PropTypes from "prop-types";
 import { logout } from "../../actions/auth";
 
 const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
+  // Links for when user is logged in
   const authLinks = (
     <ul>
       <li>
-        <Link to="/profiles">Bowlers</Link>
+        <Link
+          // Link to list of users
+          to="/profiles"
+        >
+          Bowlers
+        </Link>
       </li>
       <li>
-        <Link to="/posts">Posts</Link>
+        <Link
+          // Link to posts page
+          to="/posts"
+        >
+          Posts
+        </Link>
       </li>
       <li>
-        <Link to="/dashboard">
+        <Link
+          // user icon that links to user's dashboard
+          to="/dashboard"
+        >
           <i className="fas fa-user" />{" "}
           <span className="hide-sm">Dashboard</span>
         </Link>
       </li>
       <li>
-        <Link onClick={logout} to="/">
+        <Link
+          // logout icon that when clicked logs user out
+          onClick={logout}
+          to="/"
+        >
           <i className="fas fa-sign-out-alt"></i>{" "}
           <span className="hide-sm">Logout</span>
         </Link>
@@ -28,27 +46,48 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
     </ul>
   );
 
+  // Links for when user is NOT logged in
   const guestLinks = (
     <ul>
       <li>
-        <Link to="/profiles">Developers</Link>
+        <Link
+          //Link to page with list of users
+          to="/profiles"
+        >
+          Developers
+        </Link>
       </li>
       <li>
-        <Link to="/register">Register</Link>
+        <Link
+          //Link to register page
+          to="/register"
+        >
+          Register
+        </Link>
       </li>
       <li>
-        <Link to="/login">Login</Link>
+        <Link
+          // Link to login page
+          to="/login"
+        >
+          Login
+        </Link>
       </li>
     </ul>
   );
   return (
     <nav className="navbar bg-dark">
       <h1>
-        <Link to="/">
+        <Link
+          // Make logo a link to homepage
+          to="/"
+        >
           <i className="fas fa-bowling-ball"></i> Finger Boys
         </Link>
       </h1>
       {!loading && (
+        // If user is logged in show "authLinks"
+        // If user is NOT logged in show "guesLinks"
         <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
       )}
     </nav>
