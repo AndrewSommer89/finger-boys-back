@@ -35,7 +35,7 @@ export const getPosts = () => async dispatch => {
 export const addLike = id => async dispatch => {
   try {
     // Make request to "/api/posts/like/${postId}" on the backend
-    const res = await axios.put(`/api/posts/like/${postId}`);
+    const res = await axios.put(`/api/posts/like/${id}`);
 
     // Dispatch redux action
     dispatch({
@@ -55,7 +55,7 @@ export const addLike = id => async dispatch => {
 export const removeLike = id => async dispatch => {
   try {
     // Make PUT request to "/api/posts/unlike/${postId}" on the backend
-    const res = await axios.put(`/api/posts/unlike/${postId}`);
+    const res = await axios.put(`/api/posts/unlike/${id}`);
 
     // Dispatch redux action
     dispatch({

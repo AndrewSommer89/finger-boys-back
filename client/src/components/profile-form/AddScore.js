@@ -4,7 +4,15 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { addScore, getProfiles } from "../../actions/profile";
 
-const AddScore = ({ addScore, history }) => {
+const AddScore = ({
+  addScore,
+  getProfiles,
+  profile: { profiles, auth },
+  history
+}) => {
+  useEffect(() => {
+    getProfiles();
+  }, [getProfiles]);
   // set the state for the component
   // formData = object with all the field values
   // setFormData = function to update the state
