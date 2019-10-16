@@ -47,7 +47,7 @@ const Profile = ({
             <ProfileTop profile={profile} />
             <ProfileAbout profile={profile} />
             <ProfileStats scores={profile.scores} />
-            <ProfileScores scores={profile.scores} />
+            <ProfileScores profile={profile} scores={profile.scores} />
           </div>
         </Fragment>
       )}

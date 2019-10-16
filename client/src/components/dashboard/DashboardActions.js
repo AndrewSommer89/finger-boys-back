@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
-const DashBoardActions = () => {
+const DashBoardActions = ({ user }) => {
   return (
     <div className="dash-buttons">
       <Link
@@ -20,6 +21,10 @@ const DashBoardActions = () => {
       </Link>
     </div>
   );
+};
+
+DashBoardActions.propTypes = {
+  user: PropTypes.object.isRequired
 };
 
 export default DashBoardActions;

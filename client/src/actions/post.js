@@ -32,7 +32,7 @@ export const getPosts = () => async dispatch => {
 };
 
 // Add like
-export const addLike = postId => async dispatch => {
+export const addLike = id => async dispatch => {
   try {
     // Make request to "/api/posts/like/${postId}" on the backend
     const res = await axios.put(`/api/posts/like/${postId}`);
@@ -40,7 +40,7 @@ export const addLike = postId => async dispatch => {
     // Dispatch redux action
     dispatch({
       type: UPDATE_LIKES,
-      payload: { postId, likes: res.data }
+      payload: { id, likes: res.data }
     });
   } catch (err) {
     // If there is an errror dispatch POST_ERROR
@@ -52,7 +52,7 @@ export const addLike = postId => async dispatch => {
 };
 
 // Remove like
-export const removeLike = postId => async dispatch => {
+export const removeLike = id => async dispatch => {
   try {
     // Make PUT request to "/api/posts/unlike/${postId}" on the backend
     const res = await axios.put(`/api/posts/unlike/${postId}`);
@@ -60,7 +60,7 @@ export const removeLike = postId => async dispatch => {
     // Dispatch redux action
     dispatch({
       type: UPDATE_LIKES,
-      payload: { postId, likes: res.data }
+      payload: { id, likes: res.data }
     });
   } catch (err) {
     // If there is an errror dispatch POST_ERROR

@@ -166,7 +166,7 @@ export const addScore = (formData, history) => async dispatch => {
 };
 
 // Delete Score
-export const deleteScore = id => async dispatch => {
+export const deleteScore = (profileId, scoreId) => async dispatch => {
   try {
     // Make a delete request to "/api/profile/score/${id}" to the backend
     const res = await axios.delete(`/api/profile/score/${id}`);

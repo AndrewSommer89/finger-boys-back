@@ -30,7 +30,7 @@ const Dashboard = ({
       </p>
       {profile !== null ? (
         <Fragment>
-          <DashboardActions />
+          <DashboardActions user={user} />
           <Stats scores={profile.scores} />
           <Scores scores={profile.scores} />
           <div className="my-2">

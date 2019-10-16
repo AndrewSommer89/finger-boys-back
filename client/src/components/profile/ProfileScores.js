@@ -23,7 +23,7 @@ const ProfileScores = ({ scores, deleteScore }) => {
       <td className="hide-sm">{score.gutterballs}</td>
       <td>
         <button
-          onClick={() => deleteScore(score._id)}
+          onClick={() => deleteScore(profile.user._id, score._id)}
           className="btn btn-danger"
         >
           Delete

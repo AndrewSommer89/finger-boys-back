@@ -223,6 +223,7 @@ router.put(
 
     // Extract needed info from json body
     const {
+      bowler,
       gameWon,
       totalFrames,
       totalPins,
@@ -237,6 +238,7 @@ router.put(
 
     // Create a newScore with info extracted from json body
     const newScore = {
+      bowler,
       gameWon,
       totalFrames,
       totalPins,
@@ -272,7 +274,7 @@ router.put(
 // @route   DELETE api/profile/score/:score_id
 // @desc    Delete score from profile
 // @access  Private
-router.delete("/score/:score_id", auth, async (req, res) => {
+router.delete("/score/:user_id/:score_id", auth, async (req, res) => {
   try {
     // Find the users profile using the user's id
     const profile = await Profile.findOne({ user: req.user.id });

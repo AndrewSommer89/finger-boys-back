@@ -398,61 +398,6 @@ button {
   text-align: center;
 }
 
-.profile-about .skills {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.profile-exp {
-  grid-area: exp;
-}
-
-.profile-edu {
-  grid-area: edu;
-}
-
-.profile-exp h2,
-.profile-edu h2 {
-  margin-bottom: 1rem;
-}
-
-.profile-exp > div,
-.profile-edu > div {
-  margin-bottom: 1rem;
-  padding-bottom: 1rem;
-  border-bottom: #ccc 1px dotted;
-}
-
-.profile-exp > div:last-child,
-.profile-edu > div:last-child {
-  border: 0;
-}
-
-.profile-exp p,
-.profile-edu p {
-  margin: 0.5rem 0;
-}
-
-.profile-github {
-  grid-area: github;
-}
-
-.profile-github .repo {
-  display: flex;
-}
-
-.profile-github .repo > div:first-child {
-  flex: 7;
-  flex-basis: 70%;
-}
-
-.profile-github > div:last-child {
-  flex: 3;
-  flex-basis: 20%;
-}
-
 h3 {
   padding: 30px;
   text-align: center;
@@ -486,16 +431,13 @@ h3 {
   width: 90%;
   margin: auto;
 }
-.profile-stats tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
 
 .profile-stats tr:hover {
   background-color: lightgray;
 }
 
-.profile-stats th,
-.profile-stats td {
+.profile-stats-scores th,
+.profile-stats-scores td {
   padding: 5px;
   text-align: center;
   border-right: 1px solid black;
@@ -503,6 +445,13 @@ h3 {
 
 .profile-stats th {
   border-bottom: 1px solid black;
+}
+
+.profile-stats-stats th,
+.profile-stats-stats td {
+  padding: 2px;
+  text-align: center;
+  border-right: 1px solid black;
 }
 
 /* Posts Page */
