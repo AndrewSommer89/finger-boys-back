@@ -179,10 +179,7 @@ export const addComment = (postId, formData) => async dispatch => {
 export const deleteComment = (postId, commentId) => async dispatch => {
   try {
     // Make DELETE request to "/api/posts/comment/${postId}/${postId}" on the backend, pass in formData
-    const res = await axios.delete(
-      `/api/posts/comment/${postId}/${commentId}`,
-      FormData
-    );
+    await axios.delete(`/api/posts/comment/${postId}/${commentId}`, FormData);
 
     // Dispatch redux action
     dispatch({

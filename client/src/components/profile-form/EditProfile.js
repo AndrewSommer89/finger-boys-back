@@ -40,8 +40,7 @@ const EditProfile = ({
       homeLane: loading || !profile.homeLane ? "" : profile.homeLane,
       twitter: loading || !profile.social ? "" : profile.social.twitter,
       facebook: loading || !profile.social ? "" : profile.social.facebook,
-      linkedin:
-        loading || !profile.social.linkedin ? "" : profile.social.linkedin,
+      linkedin: loading || !profile.social ? "" : profile.social.linkedin,
       instagram: loading || !profile.social ? "" : profile.social.instagram
     });
   }, [loading, getCurrentProfile]);

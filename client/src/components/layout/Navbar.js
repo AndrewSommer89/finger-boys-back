@@ -54,7 +54,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
           //Link to page with list of users
           to="/profiles"
         >
-          Developers
+          Bowlers
         </Link>
       </li>
       <li>

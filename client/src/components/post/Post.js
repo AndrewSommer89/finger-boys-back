@@ -13,7 +13,7 @@ const Post = ({ getPost, post: { post, loading }, match }) => {
     // Call get getPost() as soon component loads
     getPost(match.params.id);
     // add "[]" to make function load only once
-  }, [getPost]);
+  }, [getPost, match.params.id]);
 
   // If profile is null and page is loading show spinner else show Fragment
   return loading || post === null ? (
