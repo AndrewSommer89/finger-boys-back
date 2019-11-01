@@ -6,6 +6,7 @@ const connectDB = async () => {
   // If we cant connect
   try {
     await mongoose.connect(db, {
+      // Things to get rid of console errors
       useNewUrlParser: true,
       useCreateIndex: true,
       useFindAndModify: false
@@ -19,4 +20,5 @@ const connectDB = async () => {
   }
 };
 
+// Export connectDB
 module.exports = connectDB;

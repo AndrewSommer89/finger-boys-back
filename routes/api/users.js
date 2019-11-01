@@ -61,12 +61,15 @@ router.post(
         d: "mm"
       });
 
+      const admin = false;
+
       // Create a new user
       user = new User({
         name,
         email,
         avatar,
-        password
+        password,
+        admin
       });
 
       // Ecrypt password

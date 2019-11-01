@@ -1,6 +1,9 @@
 const mongoose = require("mongoose");
 
+// Create ProfileSchema for mongoose model
 const ProfileSchema = new mongoose.Schema({
+  // Create reference to user model so that profile is associated with user
+  // Connect to user id in User model
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "user"
@@ -9,6 +12,7 @@ const ProfileSchema = new mongoose.Schema({
   leagueMember: {
     type: Boolean
   },
+
   phone: {
     type: String
   },
@@ -19,6 +23,7 @@ const ProfileSchema = new mongoose.Schema({
     type: String
   },
 
+  // Stats to display on user's profile
   stats: [
     {
       averageScore: {
@@ -93,6 +98,8 @@ const ProfileSchema = new mongoose.Schema({
       }
     }
   ],
+
+  // User's social media accounts
   social: {
     instagram: {
       type: String
@@ -107,6 +114,8 @@ const ProfileSchema = new mongoose.Schema({
       type: String
     }
   },
+
+  // User's past scores
   scores: [
     {
       date: {
@@ -154,9 +163,11 @@ const ProfileSchema = new mongoose.Schema({
       }
     }
   ],
+
   date: {
     type: Date
   }
 });
 
+// Export Profile model
 module.exports = Profile = mongoose.model("profile", ProfileSchema);

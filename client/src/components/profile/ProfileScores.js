@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 import Moment from "react-moment";
 import { deleteScore } from "../../actions/profile";
 
-const ProfileScores = ({ scores, deleteScore }) => {
+const ProfileScores = ({ scores, deleteScore, profile }) => {
+  // map over scores and display them in table
   const scoreDisplay = scores.map(score => (
     <tr key={score._id}>
       <td>
@@ -22,7 +23,7 @@ const ProfileScores = ({ scores, deleteScore }) => {
       <td className="hide-sm">{score.gutterballs}</td>
       <td>
         <button
-          onClick={() => deleteScore(score._id)}
+          onClick={() => deleteScore(profile.user._id, score._id)}
           className="btn btn-danger"
         >
           Delete

@@ -5,12 +5,17 @@ import { connect } from "react-redux";
 import { createProfile, getCurrentProfile } from "../../actions/profile";
 
 const EditProfile = ({
+  // Props
   profile: { profile, loading },
   createProfile,
   getCurrentProfile,
   history
 }) => {
+  // set the state for the component
+  // formData = object with all the field values
+  // setFormData = function to update the state
   const [formData, setFormData] = useState({
+    // Default values
     leagueMember: false,
     phone: "",
     homeLane: "",
@@ -25,8 +30,9 @@ const EditProfile = ({
   const [displaySocialInputs, toggleSocialInputs] = useState(false);
 
   useEffect(() => {
+    // Get current users profile when the page loads
     getCurrentProfile();
-
+    // Set the data to what is already in the user's profile
     setFormData({
       leagueMember:
         loading || !profile.leagueMember ? "" : profile.leagueMember,
@@ -34,12 +40,12 @@ const EditProfile = ({
       homeLane: loading || !profile.homeLane ? "" : profile.homeLane,
       twitter: loading || !profile.social ? "" : profile.social.twitter,
       facebook: loading || !profile.social ? "" : profile.social.facebook,
-      linkedin:
-        loading || !profile.social.linkedin ? "" : profile.social.linkedin,
+      linkedin: loading || !profile.social ? "" : profile.social.linkedin,
       instagram: loading || !profile.social ? "" : profile.social.instagram
     });
   }, [loading, getCurrentProfile]);
 
+  // Destructure
   const {
     leagueMember,
     phone,
@@ -51,11 +57,17 @@ const EditProfile = ({
     instagram
   } = formData;
 
+  // When user types in the input box it updates the state
   const onChange = e =>
+    // Copy the form data
+    // Make the target the current input the user is in
+    // Change the target to value that is typed in
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = e => {
+    // Stop the page from refreshing when form is submitted
     e.preventDefault();
+    // Update the profile by calling create file action and passing in formData, history and changing "edit" to true
     createProfile(formData, history, true);
   };
 

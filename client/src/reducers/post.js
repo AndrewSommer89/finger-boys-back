@@ -22,6 +22,7 @@ export default function(state = initialState, action) {
 
   switch (type) {
     case GET_POSTS:
+      // Return object with current state and fill the post with the payload
       return {
         ...state,
         posts: payload,
@@ -36,7 +37,7 @@ export default function(state = initialState, action) {
     case ADD_POST:
       return {
         ...state,
-        posts: [payload, ...state.posts],
+        posts: [...state.posts, payload],
         loading: false
       };
     case DELETE_POST:
@@ -46,6 +47,7 @@ export default function(state = initialState, action) {
         loading: false
       };
     case POST_ERROR:
+      // Return object with current state and fill the error with the payload
       return {
         ...state,
         error: payload,
@@ -62,7 +64,7 @@ export default function(state = initialState, action) {
     case ADD_COMMENT:
       return {
         ...state,
-        posts: { ...state.post, comments: payload },
+        post: { ...state.post, comments: payload },
         loading: false
       };
     case REMOVE_COMMENT:

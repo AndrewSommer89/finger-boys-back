@@ -4,10 +4,11 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 const Landing = ({ isAuthenticated }) => {
-  //If user is already authenticated
+  //If user is already authenticated send user to their own dashboard
   if (isAuthenticated) {
     return <Redirect to="dashboard" />;
   }
+  // If user is not authenticated
   return (
     <section className="landing">
       <div className="dark-overlay">
@@ -15,10 +16,18 @@ const Landing = ({ isAuthenticated }) => {
           <h1 className="x-large">Finger Boys</h1>
           <p className="lead">JOIN FOR A STRIKING GOOD TIME</p>
           <div className="buttons">
-            <Link to="/register" className="btn btn-primary">
+            <Link
+              //Link to register page
+              to="/register"
+              className="btn btn-primary"
+            >
               Sign Up
             </Link>
-            <Link to="/login" className="btn btn-light">
+            <Link
+              // Link to login page
+              to="/login"
+              className="btn btn-light"
+            >
               Login
             </Link>
           </div>

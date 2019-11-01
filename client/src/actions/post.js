@@ -14,13 +14,16 @@ import {
 //Get Posts
 export const getPosts = () => async dispatch => {
   try {
+    // Make get request to "api/posts" on the backend
     const res = await axios.get("/api/posts");
 
+    // Dispatch redux action
     dispatch({
       type: GET_POSTS,
       payload: res.data
     });
   } catch (err) {
+    // If there is an errror dispatch POST_ERROR
     dispatch({
       type: POST_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }
@@ -29,15 +32,18 @@ export const getPosts = () => async dispatch => {
 };
 
 // Add like
-export const addLike = postId => async dispatch => {
+export const addLike = id => async dispatch => {
   try {
-    const res = await axios.put(`/api/posts/like/${postId}`);
+    // Make request to "/api/posts/like/${postId}" on the backend
+    const res = await axios.put(`/api/posts/like/${id}`);
 
+    // Dispatch redux action
     dispatch({
       type: UPDATE_LIKES,
-      payload: { postId, likes: res.data }
+      payload: { id, likes: res.data }
     });
   } catch (err) {
+    // If there is an errror dispatch POST_ERROR
     dispatch({
       type: POST_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }
@@ -46,15 +52,18 @@ export const addLike = postId => async dispatch => {
 };
 
 // Remove like
-export const removeLike = postId => async dispatch => {
+export const removeLike = id => async dispatch => {
   try {
-    const res = await axios.put(`/api/posts/unlike/${postId}`);
+    // Make PUT request to "/api/posts/unlike/${postId}" on the backend
+    const res = await axios.put(`/api/posts/unlike/${id}`);
 
+    // Dispatch redux action
     dispatch({
       type: UPDATE_LIKES,
-      payload: { postId, likes: res.data }
+      payload: { id, likes: res.data }
     });
   } catch (err) {
+    // If there is an errror dispatch POST_ERROR
     dispatch({
       type: POST_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }
@@ -62,18 +71,22 @@ export const removeLike = postId => async dispatch => {
   }
 };
 
-// Delete Posts
+// Delete Post
 export const deletePost = postId => async dispatch => {
   try {
+    // Make delete request to "/api/posts/${postId}" on the backend
     await axios.delete(`/api/posts/${postId}`);
 
+    // Dispatch redux action
     dispatch({
       type: DELETE_POST,
       payload: postId
     });
 
+    // Show alert on screen that reads "Post Removed" with "success" style
     dispatch(setAlert("Post Removed", "success"));
   } catch (err) {
+    // If there is an errror dispatch POST_ERROR
     dispatch({
       type: POST_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }
@@ -83,21 +96,26 @@ export const deletePost = postId => async dispatch => {
 
 // Add Posts
 export const addPost = FormData => async dispatch => {
+  // Since we are sending data create config object with our headers
   const config = {
     headers: {
       "Content-Type": "application/json"
     }
   };
   try {
+    // Make POST request to "/api/posts/" on the backend, pass in FormData and config
     const res = await axios.post(`/api/posts`, FormData, config);
 
+    // Dispatch redux action
     dispatch({
       type: ADD_POST,
       payload: res.data
     });
 
+    // Make alert show on screen that reads "Post Created", with success style
     dispatch(setAlert("Post Created", "success"));
   } catch (err) {
+    // If there is an errror dispatch POST_ERROR
     dispatch({
       type: POST_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }
@@ -108,13 +126,16 @@ export const addPost = FormData => async dispatch => {
 // Get Post
 export const getPost = id => async dispatch => {
   try {
+    // Make GET request to "/api/posts/${id}" on the backend
     const res = await axios.get(`/api/posts/${id}`);
 
+    // Dispatch redux action
     dispatch({
       type: GET_POST,
       payload: res.data
     });
   } catch (err) {
+    // If there is an errror dispatch POST_ERROR
     dispatch({
       type: POST_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }
@@ -130,19 +151,23 @@ export const addComment = (postId, formData) => async dispatch => {
     }
   };
   try {
+    // Make POST request to "/api/posts/comment/${postId}" on the backend, pass in formData and config
     const res = await axios.post(
       `/api/posts/comment/${postId}`,
       formData,
       config
     );
 
+    // Dispatch redux action
     dispatch({
       type: ADD_COMMENT,
       payload: res.data
     });
 
+    // Make alert show on screen that reads "Comment Added", with success style
     dispatch(setAlert("Comment Added", "success"));
   } catch (err) {
+    // If there is an errror dispatch POST_ERROR
     dispatch({
       type: POST_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }
@@ -153,18 +178,19 @@ export const addComment = (postId, formData) => async dispatch => {
 // Delete Comment
 export const deleteComment = (postId, commentId) => async dispatch => {
   try {
-    const res = await axios.delete(
-      `/api/posts/comment/${postId}/${commentId}`,
-      FormData
-    );
+    // Make DELETE request to "/api/posts/comment/${postId}/${postId}" on the backend, pass in formData
+    await axios.delete(`/api/posts/comment/${postId}/${commentId}`, FormData);
 
+    // Dispatch redux action
     dispatch({
       type: REMOVE_COMMENT,
       payload: commentId
     });
 
+    // Make alert show on screen that reads "Comment Removed", with success style
     dispatch(setAlert("Comment Removed", "success"));
   } catch (err) {
+    // If there is an errror dispatch POST_ERROR
     dispatch({
       type: POST_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }

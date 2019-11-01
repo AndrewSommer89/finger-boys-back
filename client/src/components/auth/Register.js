@@ -6,23 +6,36 @@ import { register } from "../../actions/auth";
 import PropTypes from "prop-types";
 
 const Register = ({ setAlert, register, isAuthenticated }) => {
+  // set the state for the component
+  // formData = object with all the field values
+  // setFormData = function to update the state
   const [formData, setFormData] = useState({
+    // Default values
     name: "",
     email: "",
     password: "",
     password2: ""
   });
 
+  // Destructure
   const { name, email, password, password2 } = formData;
 
+  // When user types in the input box it updates the state
   const onChange = e =>
+    // Copy the form data
+    // Make the target the current input the user is in
+    // Change the target to value that is typed in
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = e => {
+    // Stop the page from refreshing when form is submittied
     e.preventDefault();
+    // Make sure the passwords match
     if (password !== password2) {
+      // Make alert show on page
       setAlert("Password do not match", "danger");
     } else {
+      // Save the new user to the database
       register({ name, email, password });
     }
   };

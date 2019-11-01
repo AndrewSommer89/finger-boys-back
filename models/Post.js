@@ -1,7 +1,9 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-
+// Create a PostSchema for mongoose model
 const PostSchema = new Schema({
+  // Create reference to user model so that post is associated with user
+  // Connect to user id in User model
   user: {
     type: Schema.Types.ObjectId,
     ref: "users"
@@ -16,6 +18,8 @@ const PostSchema = new Schema({
   avatar: {
     type: String
   },
+
+  // Store post likes
   likes: [
     {
       user: {
@@ -24,6 +28,7 @@ const PostSchema = new Schema({
       }
     }
   ],
+  // Store post's comments
   comments: [
     {
       user: {
@@ -46,10 +51,13 @@ const PostSchema = new Schema({
       }
     }
   ],
+
+  // Date of post
   date: {
     type: Date,
     defefault: Date.now
   }
 });
 
+// Export Post model
 module.exports = Post = mongoose.model("post", PostSchema);

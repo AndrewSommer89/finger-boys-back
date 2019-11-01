@@ -9,7 +9,9 @@ import {
   ACCOUNT_DELETED
 } from "../actions/types";
 
+// Set intial state
 const initialState = {
+  // get the token from the local storage
   token: localStorage.getItem("token"),
   isAuthenticated: null,
   loading: true,
@@ -17,6 +19,7 @@ const initialState = {
 };
 
 export default function(state = initialState, action) {
+  // Destructure
   const { type, payload } = action;
 
   switch (type) {

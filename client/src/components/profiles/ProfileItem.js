@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 const ProfileItem = ({
+  // Props
+  // Pull out what you need from profile
   profile: {
     user: { _id, name, avatar },
     leagueMember,

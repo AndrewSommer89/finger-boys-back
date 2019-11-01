@@ -5,22 +5,32 @@ import { login } from "../../actions/auth";
 import PropTypes from "prop-types";
 
 const Login = ({ login, isAuthenticated }) => {
+  // set the state for the component
+  // formData = object with all the field values
+  // setFormData = function to update the state
   const [formData, setFormData] = useState({
     email: "",
     password: ""
   });
 
+  // Destructure
   const { email, password } = formData;
 
+  // When user types in the input box it updates the state
   const onChange = e =>
+    // Copy the form data
+    // Make the target the current input the user is in
+    // Change the target to value that is typed in
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = async e => {
+    // Prevent the default action (refresh the page) when the submit button is clicked
     e.preventDefault();
+    // Pass in email and password to the login imported login action
     login(email, password);
   };
 
-  //Redirect if logged in
+  //Redirect to dashboard if user is logged in
   if (isAuthenticated) {
     return <Redirect to="/dashboard" />;
   }
