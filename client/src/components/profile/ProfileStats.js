@@ -18,7 +18,12 @@ const ProfileStats = ({ scores }) => {
       scoreTotal = scoreTotal + gameScore;
     }
     // return scoreTotal divided by gamesBowled, and limit the decimal points
-    return (scoreTotal / gamesBowled).toFixed(2);
+    let avg = (scoreTotal / gamesBowled).toFixed(2);
+    if (isNaN(avg)) {
+      return 0;
+    } else {
+      return avg;
+    }
   };
 
   // Find out users high score
@@ -70,7 +75,11 @@ const ProfileStats = ({ scores }) => {
     // Limit the decimal points and add "%" string at the end
     const strikePercent = strikeDecimal.toFixed(2) + "%";
     // return strikePercent
-    return strikePercent;
+    if (isNaN(strikePercent)) {
+      return 0;
+    } else {
+      return strikePercent;
+    }
   };
 
   // Calculate user's total number of spares
@@ -93,7 +102,11 @@ const ProfileStats = ({ scores }) => {
     // Limit the decimal points and add "%" string at the end
     const sparePercentage = spareDecimal.toFixed(2) + "%";
     // return sparePercentage
-    return sparePercentage;
+    if (isNaN(sparePercentage)) {
+      return 0;
+    } else {
+      return sparePercentage;
+    }
   };
 
   // Calculate percentage of times user did not have either a strike or a spare
@@ -104,8 +117,13 @@ const ProfileStats = ({ scores }) => {
     const openFrames = framesBowled() - scores;
     // divide "openFrames" by the number of frames bowled and multiply by 100
     const openFramesDecimal = (openFrames / framesBowled()) * 100;
-    // Limit the decimal points and add "%" string at the end and return it
-    return openFramesDecimal.toFixed(2) + "%";
+    // Limit the decimal points and add "%" string at the end
+    let openP = openFramesDecimal.toFixed(2) + "%";
+    if (isNaN(openP)) {
+      return 0;
+    } else {
+      return openP;
+    }
   };
 
   // percentage the user has picked up a spare with only one pin left
@@ -123,8 +141,13 @@ const ProfileStats = ({ scores }) => {
     }
     // divide "pickups" by "attempts" and multiply by 100
     let pickupDecimal = (pickups / attempts) * 100;
-    // Limit the decimal points and add "%" string at the end and return it
-    return pickupDecimal.toFixed(2) + "%";
+    // Limit the decimal points and add "%" string at the end
+    let pickupP = pickupDecimal.toFixed(2) + "%";
+    if (isNaN(pickupP)) {
+      return 0;
+    } else {
+      return pickupP;
+    }
   };
 
   // Calculate the total number of splits the user has had
@@ -158,7 +181,12 @@ const ProfileStats = ({ scores }) => {
     // divided "splitsConverted()" by "totalSplits()"
     let splitDecimal = splitsConverted() / totalSplits();
     // Limit the decimal points and add "%" string at the end and return it
-    return splitDecimal.toFixed(2) + "%";
+    let splitsP = splitDecimal.toFixed(2) + "%";
+    if (isNaN(splitsP)) {
+      return 0;
+    } else {
+      return splitsP;
+    }
   };
 
   // Calcualte the total number of gutterballs
@@ -179,7 +207,12 @@ const ProfileStats = ({ scores }) => {
     // Divide "gutterballs()" by "framesBowled()" and multiply by 100
     let gutterballDecimal = (gutterballs() / framesBowled()) * 100;
     // Limit the decimal points and add "%" string at the end and return it
-    return gutterballDecimal.toFixed(2) + "%";
+    let gutterballP = gutterballDecimal.toFixed(2) + "%";
+    if (isNaN(gutterballP)) {
+      return 0;
+    } else {
+      return gutterballP;
+    }
   };
 
   // calcualte the number of games the user bowled under 100
